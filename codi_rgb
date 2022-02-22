@@ -1,0 +1,27 @@
+from mblock import event
+
+@event.greenflag
+def on_greenflag():
+    sprite.x = 0
+    sprite.y = 0
+    sprite.size = 100
+    sprite.set_costume('cara_rgb1')
+    sprite.broadcast(str('vermell'))
+    answer = sprite.input('VERMELL?')
+    sprite.set_variable('vermell', sprite.answer)
+    sprite.broadcast(str('verd'))
+    answer = sprite.input('VERD?')
+    sprite.set_variable('verd', sprite.answer)
+    sprite.broadcast(str('blau'))
+    answer = sprite.input('BLAU?')
+    sprite.set_variable('blau', sprite.answer)
+    sprite.broadcast(str('crea el color'))
+
+
+@event.received('crea el color')
+def on_received():
+    sprite.x = 150
+    sprite.y = -100
+    sprite.size = 140
+    sprite.set_costume('cara_rgb2')
+    sprite.say('Mira el robot i veuràs el color que has creat!')
